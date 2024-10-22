@@ -12,28 +12,16 @@ class PostsController extends Controller
      */
     public function index()
     {
-        // $posts = DB::table('posts')
-        //              ->insert([
-        //                 'user_id' => 1,
-        //                 'title' => 'Inserted through Query Builder',
-        //                 'slug' => 'query-builder',
-        //                 'excerpt' => 'excerpt',
-        //                 'description' => 'Laboris eiusmod ipsum cupidatat et et nisi eiusmod nisi.',
-        //                 'is_published' => true,
-        //                 'min_to_read' => 2
-        //              ]);
         $posts = DB::table('posts')
-                     ->upsert([
-                       
-                        'user_id' => 4,
-                        'title' => 'Cupidatat duis',
-                        'slug' => 'cupidatat-duis',
+                     ->insertGetId([
+                        'user_id' => 3,
+                        'title' => 'Occaecat ea',
+                        'slug' => 'occaecat-ea',
                         'excerpt' => 'excerpt',
-                        'description' => 'x',
-                        'is_published' => true,
-                        'min_to_read' => 2
-                       
-                     ], ['title', 'slug']);
+                        'description' => 'Pariatur consectetur occaecat enim cupidatat ut.',
+                        'is_published' => false,
+                        'min_to_read' => 4
+                     ]);
         
         dd($posts);
     }

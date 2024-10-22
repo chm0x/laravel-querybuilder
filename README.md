@@ -202,3 +202,22 @@ $posts = DB::table('posts')
                        
                      ], ['title', 'slug']);
 ```
+
+## insertGetId()
+
+Not used. 
+
+It allows you to insert a new record into a table and RETRIEVE its ID in a single query.
+**Returns an ID only**.
+```
+$posts = DB::table('posts')
+            ->insertGetId([
+                'user_id' => 3,
+                'title' => 'Occaecat ea',
+                'slug' => 'occaecat-ea',
+                'excerpt' => 'excerpt',
+                'description' => 'Pariatur consectetur occaecat enim cupidatat ut.',
+                'is_published' => false,
+                'min_to_read' => 4
+            ]);
+```
