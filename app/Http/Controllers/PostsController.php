@@ -26,30 +26,10 @@ class PostsController extends Controller
         
         // $added3 = $posts_3->addSelect('title')->get();
 
-        # first(): The first() method returns an object. Which can return as arrow notation. 
-        # example, $posts->column_name
-        # get(): The get() method returns an array. It does not use arrow notation.
         $posts = DB::table('posts')
-                   ->where('id', 1)
-                   ->first();
+                     ->pluck('title');
         
-        # value(): Ese metodo value() permite regresar el valor de algunas de sus columnas. 
-        $posts_2 = DB::table('posts')
-                     ->where('id', 2)
-                     ->value('description');
-
-        # toSql() & toRawSql(): Mostrar la querie del SQL. 
-        $posts_3 = DB::table('posts')
-                     ->where('id', 3)
-                    //  ->toRawSql();
-                     ->toSql();
-        
-        # find(): El metodo find() se usa para regresar un registro por la llave primaria (nada mas)
-        # se regresa con el formato object(json).
-        $posts_4 = DB::table('posts')
-                      ->find(5);
-        
-        dd($posts_4);
+        dd($posts);
     }
 
     /**

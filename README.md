@@ -70,3 +70,17 @@ $posts = DB::table('posts')
 
 $posts # This show queries.
 ```
+
+## pluck() 
+
+It is used to retrieve a SINGLE COLUMNS VALUE from the first result of a query.
+Solo nada más recibe los valores de una(s) columna(s). 
+
+```
+$posts = DB::table('posts')
+             ->pluck('title');
+
+$posts
+```
+
+## Insert
