@@ -13,10 +13,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-                     ->updateOrInsert([
-                        'excerpt' => 'Laravel 11',
-                        'description' => 'Laravel 11 a toda madre'
-                     ], [ 'id' => 1 ]);
+                     ->truncate();
         
         dd($posts);
     }

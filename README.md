@@ -248,7 +248,7 @@ $posts = DB::table('posts')
             ]);
 ```
 
-## increment() & decrement()
+### increment() & decrement()
 
 Those methods are used to increment or decrement the value of a column by given amount.
 
@@ -273,7 +273,7 @@ $posts = DB::table('posts')
              ->decrement('min_to_read');
 ```
 
-## incrementEach() & decrementEach()
+### incrementEach() & decrementEach()
 Not used
 ```
 $posts = DB::table('posts')
@@ -281,7 +281,7 @@ $posts = DB::table('posts')
              ->incrementEach(['min_to_read', 'lines'], [5]);
 ```
 
-## updateOrInsert()
+### updateOrInsert()
 
 This method is used to update an existing record or insert a new record if it does not exists.
 
@@ -291,4 +291,36 @@ $posts = DB::table('posts')
                 'excerpt' => 'Laravel 11',
                 'description' => 'Laravel 11 a toda madre'
             ], [ 'id' => 1 ]);
+```
+
+## delete()
+
+Borrar un registro o todos. Recuerda usar el where() antes de borra todo.
+```
+ $posts = DB::table('posts')
+             ->where('id', 4)
+             ->delete();
+```
+
+And it can multiple chains.
+```
+$posts = DB::table('posts')
+             ->where('id', 4)
+             ->where('title', 'Reprehenderit quis')
+             ->delete();
+```
+```
+$posts = DB::table('posts')
+             ->where('id', 4)
+             ->orWhere('title', 'Reprehenderit quis')
+             ->delete();
+```
+
+## truncate()
+
+It will wipe out the entire table. 
+
+```
+$posts = DB::table('posts')
+             ->truncate();
 ```
