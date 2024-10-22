@@ -324,3 +324,56 @@ It will wipe out the entire table.
 $posts = DB::table('posts')
              ->truncate();
 ```
+
+## AGGREGATES METHODS 
+
+### count()
+```
+$posts = DB::table('posts')
+             ->count();
+```
+
+```
+$posts = DB::table('posts')
+             ->where('is_published', true)
+             ->count();
+```
+
+### sum()
+```
+$posts = DB::table('posts')
+            ->sum('min_to_read');
+```
+
+### avg()
+```
+$posts = DB::table('posts')
+            ->avg('min_to_read');
+```
+
+```
+$posts = DB::table('posts')
+            ->where('is_published', true)
+            ->avg('min_to_read');
+```
+
+### max()
+
+```
+$posts = DB::table('posts')
+            ->max('min_to_read')
+
+$posts = DB::table('posts')
+            ->where('is_published', true)
+            ->max('min_to_read');
+```
+
+### min()
+```
+$posts = DB::table('posts')
+            ->min('min_to_read')
+
+$posts = DB::table('posts')
+            ->where('is_published', true)
+            ->min('min_to_read');
+```

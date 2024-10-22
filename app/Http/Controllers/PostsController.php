@@ -13,7 +13,8 @@ class PostsController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-                     ->truncate();
+                    ->where('is_published', true)
+                    ->min('min_to_read');
         
         dd($posts);
     }
