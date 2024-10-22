@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('post_id');
+            $table->id();
+
+            # Llave Foranea
+            // $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnDelete();
 
             $table->string('title')->unique();
             $table->string('slug')->unique();
@@ -25,6 +31,12 @@ return new class extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+
+            # COnstraints para Foreign Key
+            // $table->foreign('user_id')
+            //       ->references('id')
+            //       ->on('users')
+            //       ->cascadeOnDelete();
         });
     }
 

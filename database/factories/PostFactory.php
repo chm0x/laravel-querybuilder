@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -20,6 +21,7 @@ class PostFactory extends Factory
         $title = fake()->unique()->sentence;
         $slug = Str::slug($title);
         return [
+            'user_id' => fake()->numberBetween(1,User::count()),
             'title' => $title,
             'slug' => $slug,
             'excerpt' => fake()->sentence,
