@@ -13,21 +13,27 @@ class PostsController extends Controller
     public function index()
     {
         // $posts = DB::table('posts')
-        //     ->select('excerpt AS summary', 'description')
-        //     ->get();
-        
-        // $posts_2 = DB::table('posts')
-        //     ->select('is_published')
-        //     ->distinct()
-        //     ->get();
-        
-        // $posts_3 = DB::table('posts')
-        //     ->select('is_published');
-        
-        // $added3 = $posts_3->addSelect('title')->get();
-
+        //              ->insert([
+        //                 'user_id' => 1,
+        //                 'title' => 'Inserted through Query Builder',
+        //                 'slug' => 'query-builder',
+        //                 'excerpt' => 'excerpt',
+        //                 'description' => 'Laboris eiusmod ipsum cupidatat et et nisi eiusmod nisi.',
+        //                 'is_published' => true,
+        //                 'min_to_read' => 2
+        //              ]);
         $posts = DB::table('posts')
-                     ->pluck('title');
+                     ->upsert([
+                       
+                        'user_id' => 4,
+                        'title' => 'Cupidatat duis',
+                        'slug' => 'cupidatat-duis',
+                        'excerpt' => 'excerpt',
+                        'description' => 'x',
+                        'is_published' => true,
+                        'min_to_read' => 2
+                       
+                     ], ['title', 'slug']);
         
         dd($posts);
     }

@@ -23,6 +23,34 @@ Laravel Query Builder is a set of classes and methods that provide a simple and 
 
 **It is an alternative to writing raw SQL queries.**
 
+## BASICs
+
+Selecting and using 'AS' as SQL querie to renaming column. 
+```
+$posts = DB::table('posts')
+             ->select('excerpt AS summary', 'description')
+             ->get();
+```
+
+Using **distinct**
+```
+$posts = DB::table('posts')
+            ->select('is_published')
+            ->distinct()
+            ->get();
+```
+
+Continue with retrieving. Use get() method at the end of the query builder.
+```
+$posts = DB::table('posts')
+            ->select('is_published');
+        
+$added = $posts->addSelect('title')->get();
+```
+
+
+
+
 ## first() method
 
 Returns an object(json). Only 1 row and which use an arrow notation. 
@@ -84,3 +112,93 @@ $posts
 ```
 
 ## Insert
+
+insertar esos valores y se retorna tipo booleana.
+```
+$posts = DB::table('posts')
+                     ->insert([
+                        'user_id' => 1,
+                        'title' => 'Inserted through Query Builder',
+                        'slug' => 'query-builder',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Laboris eiusmod ipsum cupidatat et et nisi eiusmod nisi.',
+                        'is_published' => true,
+                        'min_to_read' => 2
+                     ]);
+$posts
+```
+
+Insert multiples values inside of nestged arrays
+```
+$posts = DB::table('posts')
+            ->insert([
+                        [
+                        'user_id' => 2,
+                        'title' => 'Reprehenderit quis',
+                        'slug' => 'reprehenderit-quis',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Nulla ex id ex deserunt nulla deserunt laborum mollit.',
+                        'is_published' => true,
+                        'min_to_read' => 5
+                        ],
+                        [
+                        'user_id' => 4,
+                        'title' => 'Lorem do qui',
+                        'slug' => 'lorem-do-qui',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Veniam eiusmod incididunt non nostrud tempor occaecat proident aliquip occaecat.',
+                        'is_published' => false,
+                        'min_to_read' => 1
+                        ]
+            ]);
+```
+
+### insertOrIgnore()
+
+This method allows you to insert data into a database table ONLY IF THE DATA DOESN'T ALREADY EXISTS IN THE TABLE. If there is a conflict with a primary key or unique key constraints, the insertOrIgnore() method will simply ignore the insert operation and move on to the next one.
+**It is useful when you need to ensure that there are no duplicates records in your table**.
+Returns boolean value.
+```
+$posts = DB::table('posts')
+            ->insertOrIgnore([
+                        [
+                        'user_id' => 2,
+                        'title' => 'Reprehenderit quis',
+                        'slug' => 'reprehenderit-quis',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Nulla ex id ex deserunt nulla deserunt laborum mollit.',
+                        'is_published' => true,
+                        'min_to_read' => 5
+                        ],
+                        [
+                        'user_id' => 4,
+                        'title' => 'Lorem do qui',
+                        'slug' => 'lorem-do-qui',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Veniam eiusmod incididunt non nostrud tempor occaecat proident aliquip occaecat.',
+                        'is_published' => false,
+                        'min_to_read' => 1
+                        ]
+            ]);
+```
+
+### upsert()
+
+This method on the query builder in laravel is a powerful tool for performing insert or update operations on LARGE DATASETS.
+
+Has two arguments, one the data and the other is which consist of an array of column names to use for *matching*. That means that if a row with a matching 'title' or 'slug' already exists in the table, it will be *updated* with a new name and value. If no such row exists, a new row will be inserted. 
+
+```
+$posts = DB::table('posts')
+                     ->upsert([
+                       
+                        'user_id' => 4,
+                        'title' => 'Cupidatat duis',
+                        'slug' => 'cupidatat-duis',
+                        'excerpt' => 'excerpt',
+                        'description' => 'Consequat magna duis irure commodo.',
+                        'is_published' => true,
+                        'min_to_read' => 2
+                       
+                     ], ['title', 'slug']);
+```
