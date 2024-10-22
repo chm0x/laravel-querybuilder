@@ -377,3 +377,32 @@ $posts = DB::table('posts')
             ->where('is_published', true)
             ->min('min_to_read');
 ```
+
+## whereNot() and orWhereNot()
+
+**whereNot**
+
+They used to exclude certain data from the query result.
+
+```
+$posts = DB::table('posts')
+            ->whereNot('min_to_read', '=', 3)
+            ->get();
+
+$posts = DB::table('posts')
+            ->whereNot('min_to_read', '>', 5)
+            ->get();
+```
+
+**orWhereNot**
+```
+$posts = DB::table('posts')
+            ->where('min_to_read', '>', 3)
+            ->orWhereNot('is_published', true)
+            ->get();
+
+$posts = DB::table('posts')
+            ->where('min_to_read', '>', 3)
+            ->orWhereNot('is_published', true)
+            ->toSql();
+```
