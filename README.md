@@ -16,3 +16,10 @@ Generar las tablas con llave primaria, usar en el Tinker:
 # use App\Models\Post;
 # Post::factory(5)->create();
 ```
+
+## WHAT IS A QUERY BUILDER?
+
+Laravel Query Builder is a set of classes and methods that provide a simple and elegant way to interact with Databases. 
+
+**It is an alternative to writing raw SQL queries.**
+
