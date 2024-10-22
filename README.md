@@ -406,3 +406,25 @@ $posts = DB::table('posts')
             ->orWhereNot('is_published', true)
             ->toSql();
 ```
+
+## exists()
+
+Its used to check if a value exists. Returns boolean type.
+
+Context: the id doesnt exists. So to check if the data exists.
+```
+$posts = DB::table('posts')
+                ->where('id', 35235)
+                ->exists();
+```
+
+### doesntExist()
+
+It is used to check if a query result doesn't exist.
+En otras palabras, ese metodo checa si el dato no existe, regresa como verdadero. 
+
+```
+$posts = DB::table('posts')
+            ->where('id', 35235)
+            ->doesntExist();
+```

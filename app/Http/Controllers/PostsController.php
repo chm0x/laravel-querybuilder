@@ -13,9 +13,9 @@ class PostsController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-                    ->where('min_to_read', '>', 3)
-                    ->orWhereNot('is_published', true)
-                    ->get();
+                    ->where('id', 35235)
+                    ->doesntExist();
+            
         
         dd($posts);
     }
