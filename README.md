@@ -286,5 +286,9 @@ $posts = DB::table('posts')
 This method is used to update an existing record or insert a new record if it does not exists.
 
 ```
-
+$posts = DB::table('posts')
+             ->updateOrInsert([
+                'excerpt' => 'Laravel 11',
+                'description' => 'Laravel 11 a toda madre'
+            ], [ 'id' => 1 ]);
 ```
