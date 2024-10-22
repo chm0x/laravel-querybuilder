@@ -23,3 +23,50 @@ Laravel Query Builder is a set of classes and methods that provide a simple and 
 
 **It is an alternative to writing raw SQL queries.**
 
+## first() method
+
+Returns an object(json). Only 1 row and which use an arrow notation. 
+
+```
+$posts = DB::table('posts')
+             ->where('id', 1)
+             ->first();
+
+$posts->columnName;
+```
+
+## value() method
+
+Returns row's values only from any column(s) and returns as object(json).
+
+```
+$posts = DB::table('posts')
+             ->where('id', 2)
+             ->value('description')
+
+$posts
+```
+
+## find() method
+
+Returns a single row by PRIMARY KEY id. And returns as object(json).
+
+```
+$posts = DB::table('posts')
+             ->find(3);
+
+$posts
+```
+
+The **first(), value() and find()** are important methods of the query builder, these methods are essential for retrieving data from the database.
+
+## toSql() & toRawSql
+
+Show queries
+```
+$posts = DB::table('posts')
+             ->where('id', 4)
+             ->toSql();
+
+$posts # This show queries.
+```
