@@ -428,3 +428,27 @@ $posts = DB::table('posts')
             ->where('id', 35235)
             ->doesntExist();
 ```
+
+## whereBetween() and whereNotBetween()
+
+**whereBetween()**
+```
+$posts = DB::table('posts')
+            ->whereBetween('min_to_read', [1,3])
+            ->get();
+
+$posts = DB::table('posts')
+            ->whereBetween('min_to_read', [1,3])
+            ->toSql();
+```
+
+**whereNotBetween()**
+```
+$posts = DB::table('posts')
+            ->whereNotBetween('min_to_read', [1,3])
+            ->get();
+
+$posts = DB::table('posts')
+            ->whereNotBetween('min_to_read', [1,3])
+            ->toSql();
+```

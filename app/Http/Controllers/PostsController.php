@@ -13,8 +13,8 @@ class PostsController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-                    ->where('id', 35235)
-                    ->doesntExist();
+                    ->whereNotBetween('min_to_read', [1,3])
+                    ->get();
             
         
         dd($posts);
