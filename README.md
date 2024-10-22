@@ -221,3 +221,70 @@ $posts = DB::table('posts')
                 'min_to_read' => 4
             ]);
 ```
+
+## update()
+
+
+
+```
+$posts = DB::table('posts')
+            ->where('id',2)
+            ->update([
+                'excerpt' => 'Nostrud anim dolor anim ipsum adipisicing in anim quis dolore ea.'
+                'description' => 'Laravel 10'
+            ]);
+```
+
+The update() method can also be used with the orWhere() method to update multiple records at once.
+**The order matters the where() and orWhere() methods**.
+
+```
+$posts = DB::table('posts')
+            ->where('id', 2)
+            ->orWhere('id', 3)
+            ->update([
+            'excerpt' => 'Laravel 10.*',
+            'description' => 'probando los metodos where y orWhere ',
+            ]);
+```
+
+## increment() & decrement()
+
+Those methods are used to increment or decrement the value of a column by given amount.
+
+**increase**
+By default, 1. 
+```
+$posts = DB::table('posts')
+             ->where('id', 1)
+             ->increment('min_to_read');
+```
+With a specific amount to increase/decrease.
+```
+$posts = DB::table('posts')
+             ->where('id', 1)
+             ->increment('min_to_read', 5); # Mean, the current value plus 5.
+```
+
+**decrement**
+```
+$posts = DB::table('posts')
+             ->where('id', 1)
+             ->decrement('min_to_read');
+```
+
+## incrementEach() & decrementEach()
+Not used
+```
+$posts = DB::table('posts')
+             ->where('id', '>',1)
+             ->incrementEach(['min_to_read', 'lines'], [5]);
+```
+
+## updateOrInsert()
+
+This method is used to update an existing record or insert a new record if it does not exists.
+
+```
+
+```

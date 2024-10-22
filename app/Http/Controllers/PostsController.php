@@ -13,15 +13,10 @@ class PostsController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-                     ->insertGetId([
-                        'user_id' => 3,
-                        'title' => 'Occaecat ea',
-                        'slug' => 'occaecat-ea',
-                        'excerpt' => 'excerpt',
-                        'description' => 'Pariatur consectetur occaecat enim cupidatat ut.',
-                        'is_published' => false,
-                        'min_to_read' => 4
-                     ]);
+                     ->updateOrInsert([
+                        'excerpt' => 'Laravel 11',
+                        'description' => 'Laravel 11 a toda madre'
+                     ], [ 'id' => 1 ]);
         
         dd($posts);
     }
