@@ -14,7 +14,8 @@ class PostsController extends Controller
     {
         $posts = DB::table('posts')
                     ->whereNotBetween('min_to_read', [1,3])
-                    ->get();
+                    ->get()
+                    ->dd();
             
         
         dd($posts);

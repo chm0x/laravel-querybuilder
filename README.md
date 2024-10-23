@@ -17,6 +17,23 @@ Generar las tablas con llave primaria, usar en el Tinker:
 # Post::factory(5)->create();
 ```
 
+## debugger
+
+before that. Use the dd() or dump() for debugging. 
+
+Example:
+```
+$posts = DB::table('posts')
+            ->where('id', 1)
+            ->get()
+            ->dd();
+
+$posts = DB::table('posts')
+            ->where('id', 1)
+            ->get()
+            ->dump();
+```
+
 ## WHAT IS A QUERY BUILDER?
 
 Laravel Query Builder is a set of classes and methods that provide a simple and elegant way to interact with Databases. 
